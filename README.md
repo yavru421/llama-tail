@@ -1,15 +1,37 @@
-# TailServe - AI Chat Application
+# TailServe - AI Chat Application with Advanced Conversation Understanding
 
-A modern, responsive AI chat application built with FastAPI and the Llama API. Features real-time streaming responses, multiple chat sessions, image uploads, and tool integration.
+A next-generation AI chat application built with FastAPI that revolutionizes human-AI interaction through intelligent conversation understanding. Features advanced intent clarification, adaptive style matching, and enhanced context retention for truly personalized AI conversations.
 
-## Features
+## 🆕 Latest Update: Advanced Conversation Understanding Protocol
 
-- 🚀 **Real-time Streaming**: Get AI responses as they're generated
-- 💬 **Multiple Chats**: Create and manage multiple chat sessions
-- 🖼️ **Image Support**: Upload and send images to the AI
-- 🔧 **Tool Integration**: Built-in web search and file operations
-- 📱 **Responsive Design**: Works great on desktop and mobile
-- 🎨 **Modern UI**: Clean, dark-themed interface with tabbed layout
+**Just launched!** A groundbreaking conversation understanding system that makes AI interactions more natural, contextual, and personalized than ever before.
+
+## ✨ Revolutionary Features
+
+### 🧠 Advanced Conversation Understanding Protocol
+- **🎯 Intent Clarification Engine**: Automatically detects ambiguous requests and asks for clarification
+- **📊 Real-time Clarity Analysis**: Every message gets a clarity score (0.0-1.0) with smart suggestions
+- **🔄 Interactive Clarification Flow**: Seamless UI prompts when messages need clarification
+- **💡 Context-Aware Analysis**: Uses conversation history to resolve pronouns and references
+
+### 🎭 Adaptive Communication Style Matching  
+- **📈 Dynamic Style Learning**: Analyzes formality, enthusiasm, technical depth, and brevity preferences
+- **🎨 Personalized Response Adaptation**: AI responses automatically match your communication style
+- **📝 Continuous Profile Building**: User preferences improve with every interaction
+- **🔧 Multi-dimensional Analysis**: Tracks 4+ style dimensions for nuanced adaptation
+
+### � Enhanced Context Management
+- **🏷️ Smart Entity Tracking**: Automatically extracts and remembers important entities (names, files, concepts)
+- **⭐ Importance-Based Context**: Messages ranked by relevance, not just recency
+- **🎪 Conversation Stage Awareness**: Tracks opening, developing, clarifying, and concluding phases
+- **🎯 Intelligent Context Selection**: Most relevant history selected for each response
+
+### 🚀 Core Chat Features
+- **⚡ Real-time Streaming**: Get AI responses as they're generated
+- **💬 Multiple Chat Sessions**: Create and manage unlimited conversations
+- **🖼️ Vision Capabilities**: Upload and analyze images with AI
+- **🔧 Integrated Tools**: Built-in web search and file operations
+- **📱 Responsive Design**: Perfect on desktop, tablet, and mobile
 
 ## Screenshots
 
@@ -20,10 +42,46 @@ The application features a modern, dark-themed interface with:
 - Image upload capabilities
 - Tool integration panel
 
+## 🏗️ Technical Implementation
+
+### Conversation Understanding Architecture
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│  Intent         │    │  Context         │    │  Style          │
+│  Analyzer       │    │  Manager         │    │  Adapter        │
+│                 │    │                  │    │                 │
+│ • Clarity Score │    │ • Entity Track   │    │ • Style Analysis│
+│ • Ambiguity Det │    │ • Importance     │    │ • Response Adapt│
+│ • Clarification │    │ • Stage Tracking │    │ • Profile Learn │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 ▼
+                    ┌─────────────────────────┐
+                    │   Enhanced Chat         │
+                    │   Endpoint              │
+                    │                         │
+                    │ • Integrated Analysis   │
+                    │ • Smart Context Select  │
+                    │ • Adaptive Responses    │
+                    └─────────────────────────┘
+```
+
+### Core Modules
+
+| Module | Purpose | Key Features |
+|--------|---------|--------------|
+| `intent_analyzer.py` | Message clarity analysis | Ambiguity detection, clarification generation, context resolution |
+| `context_manager.py` | Conversation state management | Entity extraction, importance scoring, stage tracking |
+| `style_adapter.py` | Communication style adaptation | Style analysis, response adaptation, profile learning |
+| `conversation_models.py` | Enhanced data models | ConversationState, UserProfile, IntentClarity, EnhancedMessage |
+
 ## Prerequisites
 
 - Python 3.8+
-- Llama API key from [Llama API](https://www.llama-api.com/)
+- OpenAI API key OR Llama API key
+- Modern web browser with JavaScript enabled
 
 ## Installation
 
@@ -48,9 +106,17 @@ The application features a modern, dark-themed interface with:
    ```
 
 4. **Set up environment variables**
-   Create a `.env` file in the project root:
+   Create a `.env` file in the project root or set environment variables:
    ```env
+   # Option 1: OpenAI API (recommended for compatibility)
+   OPENAI_API_KEY=your_openai_api_key_here
+   
+   # Option 2: Llama API
    LLAMA_API_KEY=your_llama_api_key_here
+   LLAMA_BASE_URL=https://api.llama-api.com/v1
+   
+   # Optional: Custom API endpoint
+   LLAMA_BASE_URL=your_custom_endpoint_here
    ```
 
 5. **Run the application**
@@ -63,13 +129,97 @@ The application features a modern, dark-themed interface with:
 6. **Open your browser**
    Navigate to `http://localhost:3001`
 
+> **🚀 Quick Start**: The application runs in development mode without an API key, showcasing all conversation understanding features with mock responses!
+
+## 🎬 Quick Demo
+
+### Intent Clarification in Action
+```
+👤 User: "Can you help me with this?"
+🤖 AI: "I want to make sure I understand correctly. What specifically would you like help with?"
+
+👤 User: "Fix the code"  
+🤖 AI: "Could you specify what exactly you're referring to?"
+
+👤 User: "Create a Python function that calculates the factorial of a number"
+🤖 AI: "I'll create a factorial function for you..." ✨ (proceeds immediately - no clarification needed)
+```
+
+### Style Adaptation Examples
+```
+🔹 Formal User: "Could you please assist me with creating a database schema?"
+🤖 AI: "I would be pleased to help you design a database schema. Please provide the requirements..."
+
+🔹 Casual User: "yo can u help me make a db?"  
+🤖 AI: "Sure! I can help you create a database. What kind of data are you working with?"
+```
+
+## Conversation Understanding Features
+
+### Intent Clarification System
+The system automatically analyzes each message for clarity and intent:
+
+- **Ambiguity Detection**: Identifies vague references, incomplete requests, and uncertain language
+- **Clarity Scoring**: Each message receives a clarity score from 0.0 (very ambiguous) to 1.0 (crystal clear)
+- **Interactive Clarification**: When clarity score < 0.6, users get clarification prompts
+- **Context Awareness**: Uses conversation history to resolve pronouns and references
+
+**Example:**
+```
+User: "Can you help me with this?"
+System: "I want to make sure I understand correctly. What specifically would you like help with?"
+```
+
+### Enhanced Context Retention
+Smart conversation management that remembers what matters:
+
+- **Entity Tracking**: Automatically extracts and tracks important entities (names, files, concepts)
+- **Importance Scoring**: Messages are scored based on relevance and clarity
+- **Conversation Stages**: Tracks whether conversation is opening, developing, clarifying, or concluding
+- **Smart Context Selection**: Most relevant messages are selected for context, not just recent ones
+
+### Adaptive Style Matching
+The system learns and adapts to your communication style:
+
+- **Style Analysis**: Detects formality level, enthusiasm, technical depth, and preferred brevity
+- **Response Adaptation**: Adjusts responses to match your communication patterns
+- **Learning Over Time**: User profiles improve with each interaction
+- **Personalized Experience**: Same question, different style based on who's asking
+
+**Style Indicators:**
+- **Formality**: "Could you please..." vs "can u..."
+- **Enthusiasm**: Use of exclamation marks and positive language
+- **Technical Depth**: Technical terminology and code references
+- **Brevity**: Preference for short vs detailed responses
+
+## API Endpoints
+
+### Core Endpoints
+- `POST /chat` - Enhanced chat with conversation understanding
+- `POST /clarify` - Check message clarity and get suggestions
+- `GET /list_chats` - List all chat sessions
+- `GET /get_chat?chat={name}` - Get chat history
+- `POST /create_chat` - Create new chat session
+- `POST /upload_image` - Upload images for vision capabilities
+
+### Enhanced Chat Flow
+1. **Message Analysis**: Intent clarity is automatically analyzed
+2. **Clarification Check**: Ambiguous messages trigger clarification prompts  
+3. **Context Update**: Conversation state and user profile are updated
+4. **Enhanced Response**: LLM receives enriched context and style information
+5. **Style Adaptation**: Response is adapted to match user's communication style
+
 ## Project Structure
 
 ```
 tailserve/
-├── main.py              # FastAPI application entry point
-├── endpoints.py         # API route handlers
-├── models.py           # Pydantic data models
+├── main.py                          # FastAPI application entry point
+├── endpoints.py                     # Enhanced API route handlers with conversation understanding
+├── models.py                        # Core Pydantic data models
+├── conversation_models.py           # NEW: Conversation understanding models
+├── intent_analyzer.py               # NEW: Intent clarity analysis engine
+├── context_manager.py               # NEW: Context and conversation state management
+├── style_adapter.py                 # NEW: Communication style adaptation
 ├── utils.py            # Utility functions and API client
 ├── tools.py            # Tool implementations (search, file ops)
 ├── requirements.txt    # Python dependencies

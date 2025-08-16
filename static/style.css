@@ -190,3 +190,70 @@ button[type="submit"]:hover {
     max-height: 120px;
     overflow-y: auto;
 }
+
+.clarification-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.clarification-content {
+    background: #232347;
+    color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 20px;
+    border: 1px solid #2d2d4d;
+}
+
+.clarification-content h3 {
+    margin-top: 0;
+    color: #7dd3fc;
+}
+
+.clarification-content ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.clarification-content li {
+    margin: 8px 0;
+    color: #f5f5f5;
+}
+
+.clarification-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.clarification-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#clarify-proceed {
+    background: #7dd3fc;
+    color: #181825;
+}
+
+#clarify-modify {
+    background: #6c757d;
+    color: white;
+}
+
+.clarification-buttons button:hover {
+    opacity: 0.8;
+}

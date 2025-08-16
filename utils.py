@@ -1,17 +1,31 @@
 import os
 import json
 from pathlib import Path
-from llama_api_client import LlamaAPIClient, APIConnectionError, APIStatusError
+from openai import OpenAI
 from tools import ddgs_search
 
 CHATS_DIR = Path("chats")
 CHATS_DIR.mkdir(exist_ok=True)
 
-LLAMA_API_KEY = os.environ.get('LLAMA_API_KEY')
-if not LLAMA_API_KEY:
-    raise ValueError("LLAMA_API_KEY environment variable is not set")
+# Use OpenAI client with custom base URL for Llama API or default to OpenAI
+LLAMA_API_KEY = os.environ.get('LLAMA_API_KEY') or os.environ.get('OPENAI_API_KEY')
+LLAMA_BASE_URL = os.environ.get('LLAMA_BASE_URL', 'https://api.openai.com/v1')
 
-client = LlamaAPIClient(api_key=LLAMA_API_KEY)
+if not LLAMA_API_KEY:
+    print("Warning: No API key found. Please set LLAMA_API_KEY or OPENAI_API_KEY environment variable")
+    # Create a mock client for development
+    client = None
+else:
+    client = OpenAI(api_key=LLAMA_API_KEY, base_url=LLAMA_BASE_URL)
+
+# Exception classes for compatibility
+class APIConnectionError(Exception):
+    pass
+
+class APIStatusError(Exception):
+    def __init__(self, message, status_code=None):
+        super().__init__(message)
+        self.status_code = status_code
 
 
 def run_tool(tool: str, tool_input: str) -> str:

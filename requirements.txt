@@ -6,4 +6,5 @@ duckduckgo-search
 ddgs
 llama-api-client
 python-multipart
-python-multipart
+pytest
+pytest-asyncio

@@ -50,9 +50,9 @@ async function checkForClarification(message) {
                 history: [] // Add actual history if needed
             })
         });
-        
+
         const data = await response.json();
-        
+
         if (data.needs_clarification) {
             return {
                 needsClarification: true,
@@ -60,7 +60,7 @@ async function checkForClarification(message) {
                 clarityScore: data.clarity_score
             };
         }
-        
+
         return { needsClarification: false };
     } catch (error) {
         console.warn('Clarification check failed:', error);
@@ -84,16 +84,16 @@ function showClarificationDialog(suggestions) {
             </div>
         </div>
     `;
-    
+
     document.body.appendChild(dialog);
-    
+
     document.getElementById('clarify-proceed').onclick = () => {
         document.body.removeChild(dialog);
         clarificationMode = false;
         // Proceed with original message
         sendMessageToChatEndpoint(pendingClarification.message);
     };
-    
+
     document.getElementById('clarify-modify').onclick = () => {
         document.body.removeChild(dialog);
         clarificationMode = false;
@@ -224,14 +224,14 @@ chatForm.addEventListener('submit', async (e) => {
         showError('Please select or create a chat first.');
         return;
     }
-    
+
     const message = userInput.value.trim();
     if (!message) return;
-    
+
     // Check for clarification need (unless we're already in clarification mode)
     if (!clarificationMode) {
         const clarificationResult = await checkForClarification(message);
-        
+
         if (clarificationResult.needsClarification) {
             pendingClarification = { message: message };
             clarificationMode = true;
@@ -239,7 +239,7 @@ chatForm.addEventListener('submit', async (e) => {
             return;
         }
     }
-    
+
     // Proceed with normal message sending
     await sendMessageToChatEndpoint(message);
     userInput.value = '';
@@ -252,16 +252,16 @@ async function sendMessageToChatEndpoint(message) {
     appendMessage('assistant', '...');
     const lastMsg = chatWindow.querySelector('.message.assistant:last-child');
     lastMsg.textContent = '';
-    
+
     if (reasoningTrace) reasoningTrace.textContent = 'Thinking...';
-    
+
     try {
         const requestBody = {
             message,
             chat: currentChat,
             history: [] // Add actual history if needed
         };
-        
+
         if (imageBase64) {
             requestBody.image_base64 = imageBase64;
         }
@@ -271,17 +271,17 @@ async function sendMessageToChatEndpoint(message) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(requestBody)
         });
-        
+
         if (!res.ok) {
             throw new Error(`HTTP ${res.status}: ${res.statusText}`);
         }
-        
+
         if (!res.body) throw new Error('No response body');
-        
+
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let done = false;
-        
+
         while (!done) {
             const { value, done: doneReading } = await reader.read();
             done = doneReading;
@@ -291,12 +291,12 @@ async function sendMessageToChatEndpoint(message) {
                 chatWindow.scrollTop = chatWindow.scrollHeight;
             }
         }
-        
+
         if (reasoningTrace) reasoningTrace.textContent = '';
         imageBase64 = null;
         imageBtn.textContent = '📷';
         showError('');
-        
+
     } catch (err) {
         lastMsg.textContent = '[Error: ' + err.message + ']';
         if (reasoningTrace) reasoningTrace.textContent = '';
