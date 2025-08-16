@@ -1,0 +1,30 @@
+# .gitignore for Python/FastAPI project
+__pycache__/
+*.pyc
+.env
+*.env
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Chat storage (optional - you might want to include sample chats)
+chats/
+
+# Python specific
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS specific
+Thumbs.db
+.DS_Store

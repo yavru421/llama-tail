@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Llama Chat</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="tabbed-container">
+        <header>
+            <h1>Llama Chat</h1>
+        </header>
+        <div class="main-layout">
+            <aside class="sidebar">
+                <!-- Project section removed: now chat-only UI -->
+                <div class="chat-section">
+                    <div class="section-title">Chats</div>
+                    <select id="chat-list"></select>
+                    <button id="new-chat-btn">New Chat</button>
+                </div>
+            </aside>
+            <main class="tabbed-main">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="chat-tab">Chat</button>
+                    <button class="tab-btn" data-tab="tools-tab">Tools</button>
+                    <button class="tab-btn" data-tab="history-tab">History</button>
+                </div>
+                <div class="tab-content active" id="chat-tab">
+                    <div id="chat-window"></div>
+                    <form id="chat-form">
+                        <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
+                        <input type="file" id="image-input" accept="image/*" style="display:none;" />
+                        <button type="button" id="image-btn" title="Attach Image">📷</button>
+                        <button type="submit">Send</button>
+                    </form>
+                    <div class="error-panel" id="error-panel" style="display:none;"></div>
+                </div>
+                <div class="tab-content" id="tools-tab">
+                    <div class="section-title">Tools</div>
+                    <label for="tool-select">Tool:</label>
+                    <select id="tool-select">
+                        <option value="none">None</option>
+                        <option value="ddgs">DuckDuckGo Search</option>
+                        <option value="save_file">Save File</option>
+                    </select>
+                    <input type="text" id="tool-input" placeholder="Tool input (query or filename|content)" />
+                    <button id="apply-tool">Run Tool</button>
+                    <div class="section-title">Reasoning Trace</div>
+                    <div id="reasoning-trace"></div>
+                </div>
+                <div class="tab-content" id="history-tab">
+                    <div class="section-title">Chat History</div>
+                    <div id="history-window"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>

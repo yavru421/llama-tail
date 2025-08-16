@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+pydantic
+duckduckgo-search
+ddgs
+llama-api-client
+python-multipart
+python-multipart
