@@ -16,6 +16,7 @@ ENV/
 
 # Chat storage (optional - you might want to include sample chats)
 chats/
+projects/
 
 # Python specific
 *.egg-info/
